@@ -27,7 +27,7 @@ class Person
 
   ## SIMPLE
   def add_book(book)
-    book.due_date = Date.today + 14
+    # book.due_date = Date.today + 14
     @books[book.title] = book
   end
 

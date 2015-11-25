@@ -1,7 +1,6 @@
 class Book
 
-  attr_accessor :due_date
-  attr_reader :title, :genre
+  attr_reader :title, :genre, :due_date
 
   @@count = 0
 
@@ -18,10 +17,17 @@ class Book
     info
   end
 
+  def set_due_date
+    @due_date = Date.today + 14
+  end
+
+  def reset_due_date
+    @due_date = nil
+  end
+
   def self.count
     "There are #{@@count} books created"
   end
-
 
   private
 

@@ -117,6 +117,7 @@ while true
   when 'view catalog'
     header "Library catalog"
     header "Available books"
+    puts library.list_books
     puts "\n"
     header "Unavailable books"
     puts library.list_books_out

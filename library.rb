@@ -11,6 +11,7 @@ class Library
 
   def add_book(*books_to_add)
     books_to_add.each do |book|
+      book.reset_due_date
       @books[book.title] = book
     end
   end
@@ -31,6 +32,7 @@ class Library
   def lend(book_title, person_name)
     person = @people[person_name]
     book = @books.delete(book_title)
+    book.set_due_date
     @books_out[book.title] = book
     person.add_book(book)
   end
