@@ -65,8 +65,9 @@ puts "--Library members-----\n\n#{members}"
 puts "\n"
 
 #TODO: return book
-# library.receive(book_title, person_name)
-wilma.return('The Hobbit', library)
+library.receive('The Hobbit', 'Wilma')
+# wilma.return('The Hobbit', library)
+
 
 #TODO: list borrowers and books out
 borrowers_and_books = library.list_borrowers_and_books

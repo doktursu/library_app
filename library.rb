@@ -20,15 +20,6 @@ class Library
     persons.each { |person| @people[person.name] = person }
   end
 
-  # ## WORKS WITH PERSON.BORROW
-  # def lend(book_title, person_name)
-  #   person = @people[person_name]
-  #   book = @books.delete(book_title)
-  #   @books_out[book.title] = book
-  #   # ADD BOOK TO PERSON
-  #   person.borrow(book.title, nil, book)
-  # end
-
   def lend(book_title, person_name)
     person = @people[person_name]
     book = @books.delete(book_title)
@@ -39,7 +30,8 @@ class Library
 
   def receive(book_title, person_name)
     person = @people[person_name]
-    book = person.return(book_title)
+    book = person.books[book_title]
+    person.delete_book(book)
     @books_out.delete(book.title)
     add_book(book)
   end
@@ -63,7 +55,6 @@ class Library
     book_strings = @books_out.select { |key, book| book.genre == genre }.map { |key, book| book.format }
     book_strings.join("\n\n")
   end
-
 
   def list_books_out
     if @books_out.empty?
@@ -99,7 +90,7 @@ class Library
   end
 
 
-  #######################################
+  ################## INTERACTIVE METHODS #####################
 
   def checkout_book(person)
     if books.empty?
@@ -196,3 +187,23 @@ class Library
   end
 
 end
+
+
+###### REDUNDANT CODE #######
+
+# ## WORKS WITH PERSON.BORROW
+# def lend(book_title, person_name)
+#   person = @people[person_name]
+#   book = @books.delete(book_title)
+#   @books_out[book.title] = book
+#   # ADD BOOK TO PERSON
+#   person.borrow(book.title, nil, book)
+# end
+
+# ## WORKS WITH PERSON.RETURN
+# def receive(book_title, person_name)
+#   person = @people[person_name]
+#   book = person.return(book_title)
+#   @books_out.delete(book.title)
+#   add_book(book)
+# end
